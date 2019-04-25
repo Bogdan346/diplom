@@ -12,6 +12,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.control.cell.TextFieldTreeTableCell;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebHistory;
 import javafx.scene.web.WebView;
@@ -138,8 +141,12 @@ public class Controller implements Initializable {
 
         tableView.setOnMouseClicked(event -> {
             getAddres();
-
         });
+
+        tableView.setOnMouseClicked(event -> {
+            doubleClick(event);
+        });
+
 
         backButton.setOnAction(event -> {
             goBack();
@@ -232,6 +239,7 @@ public class Controller implements Initializable {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+
     }
 
     ///action Go Button
@@ -303,6 +311,16 @@ public class Controller implements Initializable {
         Tooltip tooltip = new Tooltip(text);
         return tooltip;
     }
+
+
+        public  void doubleClick(MouseEvent click){
+        if (click.getClickCount()==2){
+            getAddres();
+            go();
+        }
+        }
+
+
 }
 
 
